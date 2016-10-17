@@ -3,6 +3,8 @@ Angular.js directives for dragging and resizing elements.
 
 ## Demo
 
+https://plnkr.co/I8ebvx
+
 ## Motivation
 The drag directive is taken from the angular documentation (https://docs.angularjs.org/guide/directive), which unfortunately breaks the css resize property. The resize directive found in this package allows for a draggable element to also be resized.
 
