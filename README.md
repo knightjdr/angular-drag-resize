@@ -10,9 +10,7 @@ The drag directive is taken from the angular documentation (https://docs.angular
 
 ## Installation
 Download the repo and include:
-```
-'<script src="../dist/angular-drag-resize.min.js"></script>'
-```
+<pre><code>&lt;script src="dist/angular-drag-resize.min.js"&gt;&lt;/script&gt;</code></pre>
 
 Or via bower:
 ```
@@ -21,25 +19,24 @@ $ bower install angular-drag-resize
 
 ## Usage
 
-Inject 'angular.drag.resize' into your app:
+Inject angular.drag.resize into your app:
 
 ```
 angular.module('myApp', ['angular.drag.resize']);
 ```
 
-Then add 'draggable' and/or 'resize' to an element.
+Then add draggable and/or resize to an element.
 
-```
-'<div draggable resize>
-My draggable and resizeable div
-</div>'
-```
+<pre><code>&lt;div draggable resize&gt;
+    My draggable and resizeable div
+&lt;/div&gt;
+</code></pre>
 
-The resize attribute can be set to 'horizontal' or 'vertical' to restrict resizing to one dimension.
+The resize attribute can be set to horizontal or vertical to restrict resizing to one dimension.
 
-```
-'<div resize="horizontal"></div>'
-```
+
+<pre><code>&lt;div resize="horizontal"&gt;&lt;/div&gt;
+</code></pre>
 
 ## Notes
 For resizing to work, an element must have its css position as relative, fixed or absolute.
