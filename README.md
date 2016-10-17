@@ -16,7 +16,7 @@ Download the repo and include:
 
 Or via bower:
 ```
-$ bower
+$ bower install angular-drag-resize
 ```
 
 ## Usage
