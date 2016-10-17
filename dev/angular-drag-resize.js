@@ -1,6 +1,3 @@
-//for resizing, elements must have position: relative, fixed or absolute
-//draggable elements will have their position set to fixed up first drag
-
 angular.module('angular.drag.resize', [])
   .provider('adrConfig', function adrConfigProvider(){
     //defaults
@@ -21,14 +18,23 @@ angular.module('angular.drag.resize', [])
   .directive('resize', ['adrConfig', '$document', function(adrConfig, $document) {
     return {
         restrict: 'A',
-        link: function(scope, elem, attr) {
+        link: function(scope, element, attr) {
           var dimension = {};
           var iconPosition = adrConfig.iconPosition;
           var mode = attr.resize && adrConfig.modes.indexOf(attr.resize) > -1 ? attr.resize : adrConfig.mode;
           var position = {};
           //create button for resizing
-          var btn = document.createElement("img");
-          btn.className = 'resize-icon';
+          var btn = document.createElement("span");
+          btn.style.width = '15px';
+          btn.style.height = '15px';
+          btn.innerHTML = "<svg>\
+            <circle cx='12.5' cy='2.5' r='2' fill='#777777'></circle>\
+            <circle cx='7.5' cy='7.5' r='2' fill='#777777'></circle>\
+            <circle cx='12.5' cy='7.5' r='2' fill='#424242'></circle>\
+            <circle cx='2.5' cy='12.5' r='2' fill='#777777'></circle>\
+            <circle cx='7.5' cy='12.5' r='2' fill='#424242'></circle>\
+            <circle cx='12.5' cy='12.5' r='2' fill='#212121'></circle></svg>"
+          ;
           btn.style.bottom = iconPosition[0] + 'px';
           btn.style.right = iconPosition[1] + 'px';
           btn.style.position = 'absolute';
@@ -47,8 +53,8 @@ angular.module('angular.drag.resize', [])
             $event.stopImmediatePropagation();
             position.x = $event.clientX;
             position.y = $event.clientY;
-            dimension.width = elem.prop('offsetWidth');
-            dimension.height = elem.prop('offsetHeight');
+            dimension.width = element.prop('offsetWidth');
+            dimension.height = element.prop('offsetHeight');
           	$document.bind('mousemove', mousemove);
           	$document.bind('mouseup', mouseup);
           	return false;
@@ -73,19 +79,19 @@ angular.module('angular.drag.resize', [])
               	height: deltaHeight + 'px'
             	};
             }
-          	elem.css(newDimensions);
+          	element.css(newDimensions);
           	return false;
         	}
           function mouseup() {
          	  $document.unbind('mousemove', mousemove);
          		$document.unbind('mouseup', mouseup);
         	}
-          elem.append(btn);
+          element.append(btn);
           //show button on hover
-          elem.bind('mouseover', function() {
+          element.bind('mouseover', function() {
             btn.style.visibility = 'visible';
           });
-          elem.bind('mouseout', function() {
+          element.bind('mouseout', function() {
             btn.style.visibility = 'hidden';
           });
         }
@@ -94,12 +100,12 @@ angular.module('angular.drag.resize', [])
   .directive('draggable', ['$document' , function($document) {
     return {
       restrict: 'A',
-      link: function(scope, elem) {
+      link: function(scope, element) {
         var position = {};
-      	elem.bind('mousedown', function($event) {
-          elem.css({position: 'fixed'});
-        	position.x = elem.prop('offsetLeft');
-        	position.y = elem.prop('offsetTop');
+      	element.bind('mousedown', function($event) {
+          //element.css({position: 'fixed'});
+        	position.x = element[0].getBoundingClientRect().left;
+        	position.y = element[0].getBoundingClientRect().top;
         	position.initialMouseX = $event.clientX;
           position.initialMouseY = $event.clientY;
         	$document.bind('mousemove', mousemove);
@@ -110,7 +116,7 @@ angular.module('angular.drag.resize', [])
         function mousemove($event) {
           var dx = $event.clientX - position.initialMouseX;
         	var dy = $event.clientY - position.initialMouseY;
-        	elem.css({
+        	element.css({
           	top:  position.y + dy + 'px',
           	left: position.x + dx + 'px'
           });
@@ -119,7 +125,7 @@ angular.module('angular.drag.resize', [])
         function mouseup() {
           $document.unbind('mousemove', mousemove);
          	$document.unbind('mouseup', mouseup);
-        }
+}
       }
     };
 	}])

@@ -1,0 +1,23 @@
+{
+  "name": "angular-drag-resize",
+  "description": "Angular directives for draggable and resizable elements",
+  "main": "dist/angular-drag-resize.min.js",
+  "authors": [
+    "James Knight knightjdr@gmail.com"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angular.js",
+    "draggable",
+    "resizable",
+    "elements"
+  ],
+  "homepage": "https://github.com/knightjdr/angular-drag-resize",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
