@@ -3,7 +3,7 @@
   height: 200px;
   background-color: #FFFFFF;
   border: 2px solid #183147;
-  position: relative;
+  position: fixed;
   cursor: default;
   font-family: sans-serif;
   text-align: center;

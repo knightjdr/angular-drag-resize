@@ -21,8 +21,8 @@ angular.module('angular.drag.resize', [])
         link: function(scope, element, attr) {
           var dimension = {};
           var iconPosition = adrConfig.iconPosition;
-          var mode = attr.resize && adrConfig.modes.indexOf(attr.resize) > -1 ? attr.resize : adrConfig.mode;
           var position = {};
+          var mode = attr.resize && adrConfig.modes.indexOf(attr.resize) > -1 ? attr.resize : adrConfig.mode;
           //create button for resizing
           var btn = document.createElement("span");
           btn.style.width = '15px';
@@ -59,7 +59,7 @@ angular.module('angular.drag.resize', [])
           	$document.bind('mouseup', mouseup);
           	return false;
         	};
-        	function mousemove($event) {
+        	var mousemove = function($event) {
             var deltaWidth = dimension.width - (position.x - $event.clientX);
           	var deltaHeight = dimension.height - (position.y - $event.clientY);
             var newDimensions = {};
@@ -82,10 +82,10 @@ angular.module('angular.drag.resize', [])
           	element.css(newDimensions);
           	return false;
         	}
-          function mouseup() {
+          var mouseup = function() {
          	  $document.unbind('mousemove', mousemove);
          		$document.unbind('mouseup', mouseup);
-        	}
+        	};
           element.append(btn);
           //show button on hover
           element.bind('mouseover', function() {
@@ -102,8 +102,11 @@ angular.module('angular.drag.resize', [])
       restrict: 'A',
       link: function(scope, element) {
         var position = {};
+        var dimension = {height: '', width: ''}
       	element.bind('mousedown', function($event) {
-          //element.css({position: 'fixed'});
+          dimension.width = element.prop('offsetWidth') + 'px';
+          dimension.height = element.prop('offsetHeight') + 'px';
+          element.css(dimension);
         	position.x = element[0].getBoundingClientRect().left;
         	position.y = element[0].getBoundingClientRect().top;
         	position.initialMouseX = $event.clientX;
@@ -113,7 +116,7 @@ angular.module('angular.drag.resize', [])
         	return false;
         });
 
-        function mousemove($event) {
+        var mousemove = function($event) {
           var dx = $event.clientX - position.initialMouseX;
         	var dy = $event.clientY - position.initialMouseY;
         	element.css({
@@ -122,10 +125,10 @@ angular.module('angular.drag.resize', [])
           });
         	return false;
         }
-        function mouseup() {
+        var mouseup = function() {
           $document.unbind('mousemove', mousemove);
          	$document.unbind('mouseup', mouseup);
-}
+        }
       }
     };
 	}])
