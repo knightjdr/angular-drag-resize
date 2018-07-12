@@ -1,9 +1,10 @@
 {
   "name": "angular-drag-resize",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Angular directives for draggable and resizable elements ",
-  "main": "index.js",
-  "dependencies": {
+  "main": "dist/angular-drag-resize.min.js",
+  "dependencies": {},
+  "devDependencies": {
     "gulp-clean-css": "^2.0.13",
     "gulp-jshint": "^2.0.1",
     "gulp-rename": "^1.2.2",
@@ -11,10 +12,9 @@
     "jshint": "^2.9.3",
     "jshint-stylish": "^2.2.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "James Knight knightjdr@gmail.com",
   "license": "MIT"
 }

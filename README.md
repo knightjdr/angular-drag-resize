@@ -10,11 +10,23 @@ The drag directive is taken from the angular documentation (https://docs.angular
 
 ## Installation
 Download the repo and include:
-<pre><code>&lt;script src="dist/angular-drag-resize.min.js"&gt;&lt;/script&gt;</code></pre>
+```
+<script src="dist/angular-drag-resize.min.js"></script>
+```
 
-Or via bower:
+Via bower:
 ```
 $ bower install angular-drag-resize
+```
+
+Via npm:
+```
+$ npm install angular-drag-resize
+```
+
+Via yarn:
+```
+$ yarn add angular-drag-resize
 ```
 
 ## Usage
